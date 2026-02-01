@@ -14,7 +14,7 @@ This Caddy module retrieves ParsPack CDN IP ranges from their official source an
 Build Caddy with this module using xcaddy:
 
 ```bash
-xcaddy build --with github.com/parspack/caddy-parspack-ip
+xcaddy build --with github.com/azolfagharj/caddy_parspack_ip
 ```
 
 ## Configuration

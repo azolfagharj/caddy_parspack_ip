@@ -18,9 +18,31 @@ vendor/
 # Go workspace file
 go.work
 
+# Build artifacts
+*.a
+*.o
+*.so
+
+# xcaddy build output
+xcaddy
+
 # IDE
 .idea/
 .vscode/
 *.swp
 *.swo
+*~
+.DS_Store
+
+# OS-specific files
+Thumbs.db
+desktop.ini
+
+# Log files
+*.log
+
+# Temporary files
+tmp/
+temp/
+*.tmp
 *~
