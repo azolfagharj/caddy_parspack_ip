@@ -22,6 +22,11 @@ jobs:
           go-version: '1.25'
           cache-dependency-path: go.sum
 
+      - name: Install dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y curl jq
+
       - name: Install xcaddy
         run: |
           go install github.com/caddyserver/xcaddy/cmd/xcaddy@latest
@@ -58,7 +63,7 @@ jobs:
 
           :8080 {
               respond "Hello from Caddy with ParsPack IP module!"
-              
+
               log {
                   output stdout
                   format console
@@ -68,7 +73,7 @@ jobs:
 
       - name: Start Caddy server
         run: |
-          ./caddy run --config Caddyfile --disable-admin &
+          ./caddy run --config Caddyfile &
           sleep 5
           echo "Caddy started"
 
@@ -94,23 +99,25 @@ jobs:
           fi
           echo "✅ HTTP request successful"
 
-      - name: Test with X-Forwarded-For header
+      - name: Test with X-Forwarded-For header (ParsPack IP)
         run: |
+          # Test with real ParsPack IP
           response=$(curl -s -H "X-Forwarded-For: 185.8.173.1" http://localhost:8080)
           if [ "$response" != "Hello from Caddy with ParsPack IP module!" ]; then
             echo "Error: Unexpected response with X-Forwarded-For: $response"
             exit 1
           fi
-          echo "✅ Request with X-Forwarded-For header successful"
+          echo "✅ Request with ParsPack IP (X-Forwarded-For) successful"
 
-      - name: Test with ParsPack IP
+      - name: Test with different ParsPack IP
         run: |
-          response=$(curl -s -H "X-Forwarded-For: 185.8.173.1" http://localhost:8080)
+          # Test with another ParsPack IP from the range
+          response=$(curl -s -H "X-Forwarded-For: 195.248.241.161" http://localhost:8080)
           if [ -z "$response" ]; then
             echo "Error: Empty response"
             exit 1
           fi
-          echo "✅ Request with ParsPack IP successful"
+          echo "✅ Request with different ParsPack IP successful"
 
       - name: Verify config parsing
         run: |
@@ -133,16 +140,19 @@ jobs:
             exit 1
           fi
           echo "✅ Caddy is running"
-          
+
       - name: Verify IP ranges are loaded
         run: |
           # Check config to verify IP ranges source
           config=$(./caddy adapt --config Caddyfile 2>&1)
           if echo "$config" | jq -e '.apps.http.servers.srv0.trusted_proxies.source == "parspack"' > /dev/null 2>&1; then
             echo "✅ ParsPack IP source configured correctly"
+            echo "Config details:"
+            echo "$config" | jq '.apps.http.servers.srv0.trusted_proxies'
           else
             echo "Error: ParsPack IP source not found in config"
-            echo "$config" | jq '.apps.http.servers.srv0.trusted_proxies' || echo "Config parsing failed"
+            echo "Full config:"
+            echo "$config" | jq '.' || echo "$config"
             exit 1
           fi
 
@@ -160,3 +170,7 @@ jobs:
       - name: Run Go tests
         run: |
           go test -v ./...
+
+
+#
+#
