@@ -1,6 +1,6 @@
-# ParsPack IP Source Module for Caddy [![Donate](https://img.shields.io/badge/Donate-Support%20Development-orange?style=for-the-badge)](https://donate.azolfagharj.ir/)
+# ParsPack IP Source Module for Caddy <a href="https://donate.azolfagharj.ir/" target="_blank"><img src="https://img.shields.io/badge/Donate-Support%20Development-orange?style=for-the-badge" alt="Donate"></a>
 
-This Caddy module retrieves [ParsPack](https://parspack.com/) CDN IP ranges from their [official source](https://parspack.com/cdnips.txt) and makes them available for use in Caddy's trusted proxies and IP matchers.
+This Caddy module retrieves [ParsPack](https://parspack.com/){:target="_blank"} CDN IP ranges from their [official source](https://parspack.com/cdnips.txt){:target="_blank"} and makes them available for use in Caddy's trusted proxies and IP matchers.
 
 ## Features
 
@@ -64,8 +64,8 @@ Apache-2.0
 
 
 
- 🤝 **Enjoying this free project?** [Consider supporting](https://donate.azolfagharj.ir/) its development
+ 🤝 **Enjoying this free project?** <a href="https://donate.azolfagharj.ir/" target="_blank">Consider supporting</a> its development
 
-[![Donate](https://img.shields.io/badge/Donate-Support%20Development-orange?style=for-the-badge)](https://donate.azolfagharj.ir/)
+<a href="https://donate.azolfagharj.ir/" target="_blank"><img src="https://img.shields.io/badge/Donate-Support%20Development-orange?style=for-the-badge" alt="Donate"></a>
 
 ---
