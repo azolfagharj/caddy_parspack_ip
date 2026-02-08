@@ -121,8 +121,8 @@ jobs:
 
       - name: Verify config parsing
         run: |
-          # Get config and filter out warnings
-          config=$(./caddy adapt --config Caddyfile 2>&1 | grep -v "WARN" | grep -v "not formatted")
+          # Get only JSON from stdout (warnings go to stderr, ignore them)
+          config=$(./caddy adapt --config Caddyfile 2>/dev/null)
           # Check with or without space after colon (JSON formatting may vary)
           if echo "$config" | grep -qE '"source"\s*:\s*"parspack"'; then
             echo "✅ Config parsed correctly with parspack source"
@@ -149,15 +149,16 @@ jobs:
       - name: Verify IP ranges are loaded
         run: |
           # Check config to verify IP ranges source
-          config=$(./caddy adapt --config Caddyfile 2>&1)
+          # Get only JSON from stdout (warnings go to stderr)
+          config=$(./caddy adapt --config Caddyfile 2>/dev/null)
           if echo "$config" | jq -e '.apps.http.servers.srv0.trusted_proxies.source == "parspack"' > /dev/null 2>&1; then
             echo "✅ ParsPack IP source configured correctly"
             echo "Config details:"
             echo "$config" | jq '.apps.http.servers.srv0.trusted_proxies'
           else
             echo "Error: ParsPack IP source not found in config"
-            echo "Full config:"
-            echo "$config" | jq '.' || echo "$config"
+            echo "Checking config structure:"
+            echo "$config" | jq '.apps.http.servers.srv0.trusted_proxies' || echo "Failed to parse config"
             exit 1
           fi
 
