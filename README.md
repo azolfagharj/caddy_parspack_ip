@@ -1,6 +1,6 @@
-# ParsPack IP Source Module for Caddy
+# ParsPack IP Source Module for Caddy [![Donate](https://img.shields.io/badge/Donate-Support%20Development-orange?style=for-the-badge)](https://donate.azolfagharj.ir/)
 
-This Caddy module retrieves ParsPack CDN IP ranges from their official source and makes them available for use in Caddy's trusted proxies and IP matchers.
+This Caddy module retrieves [ParsPack](https://parspack.com/) CDN IP ranges from their [official source](https://parspack.com/cdnips.txt) and makes them available for use in Caddy's trusted proxies and IP matchers.
 
 ## Features
 
@@ -16,6 +16,7 @@ Build Caddy with this module using xcaddy:
 ```bash
 xcaddy build --with github.com/azolfagharj/caddy_parspack_ip
 ```
+
 
 ## Configuration
 
@@ -56,3 +57,15 @@ This module is compatible with all Caddy v2.6.3+ versions including v2.7.x, v2.8
 ## License
 
 Apache-2.0
+
+
+---
+## Support this Project
+
+
+
+ 🤝 **Enjoying this free project?** [Consider supporting](https://donate.azolfagharj.ir/) its development
+
+[![Donate](https://img.shields.io/badge/Donate-Support%20Development-orange?style=for-the-badge)](https://donate.azolfagharj.ir/)
+
+---
