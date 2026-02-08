@@ -121,12 +121,17 @@ jobs:
 
       - name: Verify config parsing
         run: |
-          config=$(./caddy adapt --config Caddyfile 2>&1)
-          if echo "$config" | grep -q '"source": "parspack"'; then
+          # Get config and filter out warnings
+          config=$(./caddy adapt --config Caddyfile 2>&1 | grep -v "WARN" | grep -v "not formatted")
+          # Check with or without space after colon (JSON formatting may vary)
+          if echo "$config" | grep -qE '"source"\s*:\s*"parspack"'; then
             echo "✅ Config parsed correctly with parspack source"
           else
             echo "Error: Config does not contain parspack source"
+            echo "Checking for parspack in config:"
             echo "$config" | grep -i "parspack" || echo "No parspack found in config"
+            echo "Full config (first 500 chars):"
+            echo "$config" | head -c 500
             exit 1
           fi
 
