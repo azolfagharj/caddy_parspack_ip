@@ -1,4 +1,4 @@
-# ParsPack IP Source Module for Caddy <a href="https://donate.azolfagharj.ir/"><img src="https://img.shields.io/badge/Donate-Support%20Development-orange?style=for-the-badge" alt="Donate"></a>
+# ParsPack IP Source Module for Caddy <a href="https://azolfagharj.github.io/donate/"><img src="https://img.shields.io/badge/Donate-Support%20Development-orange?style=for-the-badge" alt="Donate"></a>
 
 This Caddy module retrieves <a href="https://parspack.com/">ParsPack</a> CDN IP ranges from their <a href="https://parspack.com/cdnips.txt">official source</a> and makes them available for use in Caddy's trusted proxies and IP matchers.
 
@@ -64,8 +64,8 @@ Apache-2.0
 
 
 
- 🤝 **Enjoying this free project?** <a href="https://donate.azolfagharj.ir/">Consider supporting</a> its development
+ 🤝 **Enjoying this free project?** <a href="https://azolfagharj.github.io/donate/">Consider supporting</a> its development
 
-<a href="https://donate.azolfagharj.ir/"><img src="https://img.shields.io/badge/Donate-Support%20Development-orange?style=for-the-badge" alt="Donate"></a>
+<a href="https://azolfagharj.github.io/donate/"><img src="https://img.shields.io/badge/Donate-Support%20Development-orange?style=for-the-badge" alt="Donate"></a>
 
 ---
